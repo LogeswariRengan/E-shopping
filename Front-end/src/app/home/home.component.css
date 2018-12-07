@@ -1,0 +1,11 @@
+.contain{
+height: auto;
+display:flex;
+color: black
+}
+.carousel-height{
+    height : 250px;    
+}
+.card-height{
+    height: auto;
+}

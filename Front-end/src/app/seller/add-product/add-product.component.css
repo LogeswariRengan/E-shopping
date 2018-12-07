@@ -1,0 +1,63 @@
+p{
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+
+}
+
+
+.row{
+  display: flex;
+  flex-direction: row;
+  width : 1000px;
+  align-content: space-around;
+  /* align-content: space-between; */
+ 
+}
+
+
+.column1{
+flex:50px;
+  padding: 5px;
+  
+}
+.column2{
+  /* flex:35%; */
+  flex:30px;
+  padding:5px;
+}
+
+.column3{
+  /* flex:30%; */
+  flex:50px;
+  padding:5px;
+}
+
+
+.form-center{
+left :600px;
+width: 350px;
+
+
+margin-left: 250px;
+color: black;
+}
+
+
+.product-form{
+display: flex;
+flex-direction: row;
+border : 1px solid black;
+width : 600px;
+}
+
+.form-left{
+  flex: 35%;
+  padding:20px;
+ 
+}
+
+.form-right{
+  flex:65%;
+  padding:20px;
+}

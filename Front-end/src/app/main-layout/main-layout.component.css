@@ -1,0 +1,61 @@
+.spacier{
+    flex : 1 1 auto; 
+    
+ }
+ img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+  } 
+ 
+  mat-toolbar  a{
+    display :inline-block;
+    text-decoration: none;
+    margin: 0 10px;
+    color:white;
+  }
+  .header{
+      display:flex;
+      flex-wrap: wrap;
+    
+  }
+
+  @media all and (max-width:1200px){
+    mat-toolbar{
+      height: auto;
+     
+    }    
+  }
+
+  .menu{
+      display: flex;
+  
+      justify-content: space-evenly;
+  }
+
+  @media all and (max-width:1200px){
+    .menu{
+        display:flex;
+        flex-wrap:wrap;
+        width :100%;
+   justify-content: space-evenly;
+    }
+    }    
+    @media all and (max-width:600px){
+        .menu{
+          display:none;
+         
+        } 
+       
+  }
+.icon{
+  display: block;
+  cursor: pointer;
+}
+ @media all and (min-width:600px){
+    .icon{
+      display: none;
+    }
+  }
+ 
+  

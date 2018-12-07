@@ -1,0 +1,292 @@
+<!-- <ng-progress></ng-progress> -->
+<div class="list-container">
+
+  <div class="left-container">
+    <div class="lef">
+      <h5><b>
+          Filters
+        </b>&nbsp;&nbsp;&nbsp;
+        <i class="fa fa-filter"></i>
+
+      </h5>
+      <mat-card>
+
+        <mat-card-content>
+          <h6>Price </h6>
+        </mat-card-content>
+
+
+        <section class="Lprice-container">
+          <mat-slider id="width" thumbLabel [max]="max" [min]="min" [step]="step" [(ngModel)]="value" (input)="pitch($event)"></mat-slider>
+
+          <mat-form-field class="margin">
+
+            <input matInput type="number" placeholder="Min" [(ngModel)]="min">
+          </mat-form-field>
+          <mat-form-field class="margin">
+            <input matInput type="number" placeholder="Max" [(ngModel)]="max"></mat-form-field>
+        </section>
+
+      </mat-card>
+      <!-- <div> -->
+
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Colors
+            </mat-panel-title>
+            <mat-panel-description>
+              Choose color
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <div *ngFor="let color of colorSet">
+            <mat-checkbox (change)="searchColors(color,$event)">{{color}}</mat-checkbox>
+          </div>
+          <!-- <mat-checkbox value="red" (change)="color($event)"> <i class="fa fa-circle" style="color:red;"></i>&nbsp; Red
+              </mat-checkbox><br> -->
+
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <!-- </div> -->
+      <div *ngIf="productType==='bag'">
+        <!-- <div> -->
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Brands
+              </mat-panel-title>
+              <mat-panel-description>
+                Choose Brand
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div *ngFor="let brand of bagBrandSet">
+              <mat-checkbox (change)="searchBagBrand(brand)">{{brand}}</mat-checkbox>
+
+            </div>
+            <mat-checkbox (change)="searchBagBrand(brand)">Puma</mat-checkbox>
+            <!-- <mat-checkbox value="red" (change)="color($event)"> <i class="fa fa-circle" style="color:red;"></i>&nbsp; Red
+                </mat-checkbox><br>
+               -->
+          </mat-expansion-panel>
+        </mat-accordion>
+        <!-- </div> -->
+
+
+        <!-- <div> -->
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Theme
+              </mat-panel-title>
+              <mat-panel-description>
+                Choose theme
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <div *ngFor="let theme of bagThemeSet">
+              <mat-checkbox value="{{theme}}">{{theme}}</mat-checkbox>
+            </div>
+            <!-- <mat-checkbox value="red" (change)="color($event)"> <i class="fa fa-circle" style="color:red;"></i>&nbsp; Red
+                  </mat-checkbox><br>
+                 -->
+          </mat-expansion-panel>
+        </mat-accordion>
+        <!-- </div> -->
+
+
+        <!-- <div> -->
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Material
+              </mat-panel-title>
+              <mat-panel-description>
+                Choose material
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div *ngFor="let material of bagMaterialSet">
+              <mat-checkbox value="{{material}}">{{material}}</mat-checkbox>
+            </div>
+            <!-- <mat-checkbox value="red" (change)="color($event)"> <i class="fa fa-circle" style="color:red;"></i>&nbsp; Red
+                    </mat-checkbox><br>
+                   -->
+          </mat-expansion-panel>
+        </mat-accordion>
+        <!-- </div> -->
+
+
+        <!-- <div> -->
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Capacity
+              </mat-panel-title>
+              <mat-panel-description>
+                Choose capacity
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div *ngFor="let capacity of bagCapacitySet">
+              <mat-checkbox value="{{capacity}}">{{capacity}}</mat-checkbox>
+            </div>
+
+            <!-- <mat-checkbox value="red" (change)="color($event)"> <i class="fa fa-circle" style="color:red;"></i>&nbsp; Red
+                      </mat-checkbox><br>
+                     -->
+          </mat-expansion-panel>
+        </mat-accordion>
+        <!-- </div> -->
+      </div>
+
+
+      <div *ngIf="productType === 'watch'">
+
+        <!-- <div> -->
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Brands
+              </mat-panel-title>
+              <mat-panel-description>
+                Choose Brand
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div *ngFor="let brand of watchBrandSet">
+              <mat-checkbox (change)="searchWatchBrand(brand)">{{brand}}</mat-checkbox>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+        <!-- </div> -->
+
+        <!-- <div> -->
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Types
+              </mat-panel-title>
+              <mat-panel-description>
+                Choose types
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div *ngFor="let type of watchTypeSet">
+              <mat-checkbox (change)="searchWatchType(type)">{{type}}</mat-checkbox>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+        <!-- </div> -->
+
+        <!-- <div> -->
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Features
+              </mat-panel-title>
+              <mat-panel-description>
+                Choose features
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div *ngFor="let feature of watchFeatureSet">
+              <mat-checkbox (change)="searchWatchFeature(feature)">{{feature}}</mat-checkbox>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+        <!-- </div> -->
+
+
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Material
+              </mat-panel-title>
+              <mat-panel-description>
+                Choose materials
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div *ngFor="let material of watchMaterialSet">
+              <mat-checkbox (change)="searchWatchMaterial(material)">{{material}}</mat-checkbox>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+
+        <!-- <mat-accordion>
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      Ideal for
+                    </mat-panel-title>
+                    <mat-panel-description>
+                      Choose ideal-for
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <div *ngFor="let ideal of idealForSet">
+                    <mat-checkbox (change)="searchIdealFor(ideal)">{{ideal}}</mat-checkbox>
+                  </div>
+                </mat-expansion-panel>
+              </mat-accordion> -->
+      </div>
+
+    </div>
+
+
+  </div>
+  <div class="right-container">
+    <section>
+      <b> Sort by price : </b>
+
+      <mat-form-field>
+
+        <mat-select (selectionChange)="selectPriceToSort($event)">
+          <mat-option>None</mat-option>
+          <mat-option value="lth">Low to high</mat-option>
+          <mat-option value="htl">High to low</mat-option>
+
+        </mat-select>
+      </mat-form-field>
+    </section>
+
+    <div class="row">
+
+      <div *ngFor="let products of allProducts | orderBy : 'products.productOfferedPrice' : reverse | productFilter : colorFilters  | paginate: { itemsPerPage: 3, currentPage: p }">
+
+        <div class="col m4">
+          <mat-card class="product-card" (click)="showProduct(products)">
+
+            <img mat-card-image src={{products.productImage}} alt="{{products.productType}}">
+            <mat-card-content>
+              <h6>{{products.productName}}</h6>
+              <div class="row">
+
+                <h5><i class="fa fa-rupee"></i>{{products.productOfferedPrice}}</h5>&nbsp;&nbsp;&nbsp;
+
+                <p>Original : <i class="fa fa-rupee"></i>{{products.productPrice}}</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <b>{{products.productOffer}}% Off</b>
+
+              </div>
+              <div class="row">
+                Ratings : {{products.productRating}}/5
+              </div>
+
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+
+
+    </div>
+    <br>
+    <div class="pagination">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+</div>

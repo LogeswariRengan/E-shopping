@@ -1,0 +1,183 @@
+<p>Add New Product
+</p>
+
+<mat-form-field>
+  <mat-select placeholder="Product Type" [(ngModel)]="selectedProduct" (ngModelChange)="onChange($event)" (change)="onChange($event)">
+    <mat-option>Select</mat-option>
+    <mat-option [value]="type" *ngFor="let type of productTypes">{{type}}</mat-option>
+  </mat-select>
+</mat-form-field><br>
+
+<form [formGroup]="newProductForm"  oninput="offer.value=parseInt(a.value)-((parseInt(a.value)*(parseInt(b.value))/100))">
+
+  <div class="row">
+
+    <div class="column1" style="background-color:#aaa;">
+
+      <div *ngIf="selectedProduct === 'bag'">
+        <mat-form-field>
+          <mat-select placeholder="Bag Brand" formControlName="bagBrand">
+            <mat-option>Select</mat-option>
+            <mat-option [value]="bagBrand" *ngFor="let bagBrand of bagBrands">{{bagBrand}}</mat-option>
+          </mat-select>
+        </mat-form-field><br>
+
+        <mat-form-field>
+          <mat-select placeholder="Bag Material" formControlName="bagMaterial">
+            <mat-option>Select</mat-option>
+            <mat-option [value]="bagMaterial" *ngFor="let bagMaterial of bagMaterials">{{bagMaterial}}</mat-option>
+          </mat-select>
+        </mat-form-field><br>
+
+
+        <mat-form-field>
+          <mat-select placeholder="Bag Themes" formControlName="bagTheme">
+            <mat-option>Select</mat-option>
+            <mat-option [value]="bagTheme" *ngFor="let bagTheme of bagThemes">{{bagTheme}}</mat-option>
+          </mat-select>
+        </mat-form-field><br>
+
+        <mat-form-field>
+          <input type="number" min="10" max="40" matInput placeholder="Bag Capacity(In ltrs)" formControlName="bagCapacity">
+        </mat-form-field><br>
+      </div>
+
+
+      <div *ngIf="selectedProduct === 'watch'">
+        <mat-form-field>
+          <mat-select placeholder="Watch Brands" formControlName="watchBrand">
+            <mat-option>Select</mat-option>
+            <mat-option [value]="watchBrand" *ngFor="let watchBrand of watchBrands">{{watchBrand}}</mat-option>
+          </mat-select>
+        </mat-form-field><br>
+
+        <!-- <mat-form-field>
+          <mat-select placeholder="Watch shapes" formControlName="watchShape">
+            <mat-option>Select</mat-option>
+            <mat-option [value]="watchShape" *ngFor="let watchShape of watchShapes">{{watchShape}}</mat-option>
+          </mat-select>
+        </mat-form-field><br> -->
+
+        <mat-form-field>
+          <mat-select placeholder="Watch Material" formControlName="watchMaterial">
+            <mat-option>Select</mat-option>
+            <mat-option [value]="watchMaterial" *ngFor="let watchMaterial of watchMaterials">{{watchMaterial}}</mat-option>
+          </mat-select>
+        </mat-form-field><br>
+
+        <mat-form-field>
+          <mat-select multiple  placeholder="Watch Features" formControlName="watchFeatures">
+            <mat-option>Select</mat-option>
+            <mat-option [value]="watchFeature" *ngFor="let watchFeature of watchFeatures">{{watchFeature}}</mat-option>
+          </mat-select>
+        </mat-form-field><br>
+        <mat-form-field>
+          <mat-select multiple placeholder="Watch Types" formControlName="watchType">
+            <mat-option>Select</mat-option>
+            <mat-option [value]="watchType" *ngFor="let watchType of watchTypes">{{watchType}}</mat-option>
+          </mat-select>
+        </mat-form-field><br>
+      </div>
+
+
+      <div *ngIf="selectedProduct === 'shoe'">
+        <mat-form-field>
+          <mat-select placeholder="Shoe Brand" formControlName="shoeBrand">
+            <mat-option>Select</mat-option>
+            <mat-option [value]="shoeBrand" *ngFor="let shoeBrand of shoeBrands">{{shoeBrand}}</mat-option>
+          </mat-select>
+        </mat-form-field><br>
+
+        <mat-form-field>
+          <mat-select placeholder="Shoe Material" formControlName="shoeMaterial">
+            <mat-option>Select</mat-option>
+            <mat-option [value]="shoeMaterial" *ngFor="let shoeMaterial of shoeMaterials">{{shoeMaterial}}</mat-option>
+          </mat-select>
+        </mat-form-field><br>
+
+
+      </div>
+
+    </div>
+    <div class="column2" style="background-color:#bbb;">
+     
+        <mat-form-field>
+          <input type="number" matInput placeholder="Product Price" id="a" formControlName="productPrice">
+        </mat-form-field><br>
+        <mat-form-field>
+          <input type="number" matInput placeholder="Offer (In percentage)" id="b" formControlName="productOffer">
+        </mat-form-field><br>
+        <mat-form-field>
+          <input name="offer" readonly for="a b" matInput placeholder="Offered Price" value="">
+        </mat-form-field><br>
+      
+      <mat-form-field>
+        <input type="number" min="0" max="5" matInput placeholder="Product Rating" formControlName="productRating">
+     <mat-error>
+       Please enter value between 0 and 5
+     </mat-error>
+     
+      </mat-form-field><br>
+
+      <mat-form-field>
+        <textarea matInput placeholder="Product Description" formControlName="productDesc"></textarea>
+      </mat-form-field><br>
+
+      <mat-form-field>
+        <mat-select multiple placeholder="Product Color" formControlName="productColor">
+          <mat-option>Select</mat-option>
+          <mat-option [value]="productColor" *ngFor="let productColor of productColors">{{productColor}}</mat-option>
+        </mat-select>
+      </mat-form-field><br>
+
+      <mat-form-field>
+        <mat-select multiple placeholder="Product Ideal for" formControlName="productIdealFor">
+          <mat-option>Select</mat-option>
+          <mat-option [value]="idealFor" *ngFor="let idealFor of productIdealFor">{{idealFor}}</mat-option>
+        </mat-select>
+      </mat-form-field><br>
+    </div>
+
+
+    <div class="column3" style="background-color:#ccc;">
+
+      <label>Product image : </label>
+      <img [src]="imageurl" height="100"> <br />
+      <input type="file" (change)="onSelectProductImage($event)" required>
+
+      <br>
+      <label>Front view image : </label>
+      <img [src]="fronturl" height="100"> <br />
+      <input type="file" (change)="onSelectFrontImage($event)">
+      <br>
+      <label>Top view image : </label>
+      <img [src]="topUrl" height="100"> <br />
+      <input type="file" (change)="onSelectTopImage($event)">
+      <br>
+      <label>Back view image : </label>
+      <img [src]="backUrl" height="100"> <br />
+      <input type="file" (change)="onSelectBacktImage($event)">
+      <br>
+      <label>Bottom view image : </label>
+      <img [src]="bottomUrl" height="100"> <br />
+      <input type="file" (change)="onSelectBottomImage($event)">
+      <br>
+      <label>Left view image : </label>
+      <img [src]="leftUrl" height="100"> <br />
+      <input type="file" (change)="onSelectLeftImage($event)">
+      <br>
+      <label>Right view image : </label>
+      <img [src]="rightUrl" height="100"> <br />
+      <input type="file" (change)="onSelectRightImage($event)">
+      <br>
+    </div>
+
+
+
+  </div>
+  <br>
+  <button class="mat-raised-button mat-primary" (click)="addNewProduct()">Submit</button>&nbsp;&nbsp;&nbsp;
+  <button class="mat-raised-button mat-accent" (click)="reset()">
+    Reset
+  </button>
+</form>

@@ -1,0 +1,72 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="false" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="!(isHandset$ | async)">
+    <mat-toolbar color="primary">Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/home" routerLinkActive="active">Home</a>
+
+      <a mat-list-item  [matMenuTriggerFor]="menu">Products</a>
+      <a mat-list-item href="#">Contact Us</a>
+      <a mat-list-item *ngIf="!authService.isLoggedIn()" (click)="openDialogLogin()">Login</a>
+      <mat-menu #menu="matMenu">
+        <a mat-menu-item>Bags</a>
+        <a mat-menu-item>Watches</a>
+        <a mat-menu-item>Shoes</a>
+    
+
+      </mat-menu>
+      <a mat-list-item *ngIf="authService.isLoggedIn()" (click)="gotoUrl()">Your account</a>
+      <a mat-list-item *ngIf="authService.isLoggedIn()">Orders</a>
+      <a mat-list-item *ngIf="authService.isLoggedIn()" (click)="logout()">Logout</a>
+    </mat-nav-list>
+
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" class="header">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">view_headline</mat-icon>
+      </button>
+      <img src="/assets/images/shop.jpg" alt="Logo"> &nbsp;&nbsp;
+      <span>{{title}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+      <app-search></app-search>
+      <span class="spacier"> </span>
+      <div class="menu">
+              <!-- &nbsp;&nbsp;&nbsp;&nbsp; -->
+      <a routerLink="/home" routerLinkActive="active">Home</a>
+      <a [matMenuTriggerFor]="productMenu">Products</a>
+      <a href="#">Contact Us</a>
+      <a routerLink="/adminHome">Admin</a>
+      <a routerLink="/cart"><i class="fa fa-cart-plus" aria-hidden="true"></i>cart</a>
+      <button class="btn purple-gradient btn-rounded" *ngIf="!authService.isLoggedIn()" (click)="openDialogLogin()">Login</button>
+
+      <button *ngIf="authService.isLoggedIn()" mat-button class="btn purple-gradient btn-rounded" [matMenuTriggerFor]="userMenu">
+        {{userName}}<i class="material-icons">
+          account_circle
+        </i></button>
+      <mat-menu #userMenu="matMenu">
+        <button mat-menu-item  (click)="gotoUrl()">Your account</button>
+        <button mat-menu-item >Orders</button>
+        <button mat-menu-item  (click)="logout()">Logout</button>
+      </mat-menu>
+      <mat-menu #productMenu="matMenu">
+        <a mat-menu-item>Bags</a>
+        <a mat-menu-item>Watches</a>
+        <a mat-menu-item>Shoes</a>
+        
+
+      </mat-menu>
+      </div>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+
+    <!-- <ng-content></ng-content> -->
+  
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
+
+<!-- <footer>
+  <p>E-shopping</p>
+</footer> -->

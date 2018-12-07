@@ -1,0 +1,95 @@
+<div class="container">
+  <div class="left">
+    <h2 mat-dialog-title>Create New Account</h2>
+    <img src="../../../assets/images/register.png">
+
+
+  </div>
+  <div class="right">
+
+
+    <mat-dialog-content [formGroup]="registerForm" >
+      <a> <i class="material-icons" (click)="close()">
+          cancel
+        </i></a>
+
+      <mat-form-field>
+        <input type="text" matInput placeholder="User Name" formControlName="userName">
+        <mat-error *ngIf="registerForm.get('userName').hasError('required')">
+          <div>User name is required</div>
+        </mat-error>
+        <mat-error *ngIf="registerForm.get('userName').hasError('pattern')">
+          <div>
+            User name must have characters (Eg : Logeswari)</div>
+        </mat-error>
+        <mat-error *ngIf="registerForm.get('userName').hasError('maxlength')">
+          <div>
+            User name should be maximum of 40 characters</div>
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input [type]="hide?'password' : 'text'" matInput placeholder="Password" formControlName="passWord">
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <mat-error *ngIf="registerForm.get('passWord').hasError('required')">
+          <div>Password is required</div>
+        </mat-error>
+      </mat-form-field><br>
+
+      <mat-form-field>
+        <input type="password" matInput placeholder="Confirm Password" formControlName="confirmPassword">
+        <mat-error *ngIf="registerForm.get('confirmPassword').hasError('mustMatch')">Password Mismatch</mat-error>
+      </mat-form-field><br>
+
+      <mat-form-field>
+        <input type="email" matInput placeholder="Email Id" formControlName="email">
+        <mat-error *ngIf="registerForm.get('email').hasError('required')">
+          <div>Email is required</div>
+        </mat-error>
+      
+        <mat-error *ngIf="registerForm.get('email').hasError('pattern')">
+          <div>
+            Email pattern mismatch (Eg : logu@gmail.com)</div>
+        </mat-error>
+      </mat-form-field>
+      <br>
+
+      <mat-form-field>
+        <input type="number" matInput placeholder="Phone number" formControlName="phoneNumber">
+        <mat-error *ngIf="registerForm.get('phoneNumber').hasError('required')">
+          <div> Phone number is required</div>
+        </mat-error>
+        <mat-error *ngIf="registerForm.get('phoneNumber').hasError('pattern')">
+          <div> Phone number must be a 10 digit </div>
+        </mat-error>
+      </mat-form-field><br>
+
+      <mat-form-field>
+        <input type="text" matInput placeholder="Secret question" formControlName="secretQuestion">
+        <mat-error *ngIf="registerForm.get('secretQuestion').hasError('required')">
+          <div>Secret Question is required</div>
+        </mat-error>
+      </mat-form-field><br>
+
+      <mat-form-field>
+        <input type="text" matInput placeholder="Secret answer" formControlName="secretAnswer">
+        <mat-error *ngIf="registerForm.get('secretAnswer').hasError('required')">
+          <div>Secret Answer is required</div>
+        </mat-error>
+      </mat-form-field><br>
+     
+      <re-captcha formControlName="recaptcha"></re-captcha>
+    
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+
+      <button class="mat-raised-button mat-primary" [disabled]="!this.registerForm.valid" (click)="register()">Register</button>&nbsp;
+      <button mat-raised-button color="accent" [disabled]="!this.registerForm.valid" (click)="reset()"> 
+        Reset
+      </button>
+    </mat-dialog-actions><br>
+    <span><b>{{errorMessage}}</b></span>
+  </div>
+ 
+</div>

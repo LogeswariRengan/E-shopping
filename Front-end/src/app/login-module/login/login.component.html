@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="left">
+    <h2 mat-dialog-title>Account Login</h2>
+
+    <img src="../../../assets/images/login1.jpg">
+
+
+  </div>
+  <div class="right">
+
+    <mat-dialog-content [formGroup]="accountForm">
+      <a> <i class="material-icons" (click)="close()">
+          cancel
+        </i></a>
+      <mat-form-field>
+        <input type="email" matInput placeholder="Email Id" formControlName="email">
+        <mat-error *ngIf="accountForm.get('email').hasError('required')">
+          <div>Email is required</div>
+        </mat-error>
+        <mat-error *ngIf="accountForm.get('email').hasError('pattern')">
+          <div>
+            Email pattern mismatch (Eg : logu@gmail.com)</div>
+        </mat-error>
+      </mat-form-field><br>
+      <mat-form-field>
+        <input [type]="hide ? 'password' : 'text'" matInput placeholder="Password" formControlName="passWord">
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <mat-error *ngIf="accountForm.get('passWord').hasError('required')">
+          <div>Password is required</div>
+        </mat-error>
+
+      </mat-form-field><br>
+      <b> <a (click)="openDialogForgotPassword()">Forgot password?</a></b>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+
+      <button class="mat-raised-button mat-primary" [disabled]="!this.accountForm.valid" (click)="login()">Login</button>
+      <br><br>
+      <b>_________ (OR) ________</b><br><br>
+      <button class="mat-raised-button mat-primary" (click)="openDialogRegister()">Register</button><br><br>
+     
+    </mat-dialog-actions>
+    <span><b>{{errorMessage}}</b></span>
+  </div>
+</div>

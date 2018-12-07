@@ -1,0 +1,142 @@
+<div class="main">
+
+  <mat-card>
+    <mat-card-title>
+      Your account
+    </mat-card-title>
+    <mat-card-content>
+
+      <mat-tab-group>
+        <mat-tab label="Personal">
+          <br>
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Name : {{user.userName}}
+                </mat-panel-title>
+                <mat-panel-description>
+                  Click here to edit
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+
+              <form [formGroup]="nameChangeForm">
+                <label>Enter your name : </label>
+
+                <mat-form-field>
+                  <input matInput type="text" placeholder="name" formControlName="name">
+                  <mat-error *ngIf="nameChangeForm.get('name').hasError('required')"><span>Name is required</span></mat-error>
+                  <mat-error *ngIf="nameChangeForm.get('name').hasError('pattern')"><span>Name only have characters
+                      (Eg.Logeswari)</span></mat-error>
+                  <mat-error *ngIf="nameChangeForm.get('name').hasError('maxlength')"><span>Maximum 40 characters</span></mat-error>
+                </mat-form-field>
+                <button mat-raised-button color="primary" [disabled]="!this.nameChangeForm.valid" (click)="updateName()">Save
+                </button>
+              </form>
+            </mat-expansion-panel>
+          </mat-accordion>
+          <br>
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Email : {{user.email}}
+                </mat-panel-title>
+                <mat-panel-description>
+                  Click here to edit
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+
+              <form [formGroup]="emailChangeForm">
+                <label>Enter your email : </label>
+
+                <mat-form-field>
+                  <input matInput type="email" placeholder="email" formControlName="email">
+                  <mat-error *ngIf="emailChangeForm.get('email').hasError('pattern')">
+                    <span>Email pattern mismatch..(Eg : logu@gmail.com)</span></mat-error>
+                  <mat-error *ngIf="emailChangeForm.get('email').hasError('required')">
+                    <span>Email is required</span></mat-error>
+                </mat-form-field>
+                <button mat-raised-button color="primary" [disabled]="!this.emailChangeForm.valid" (click)="updateEmail()">Save
+                </button>
+              </form>
+            </mat-expansion-panel>
+          </mat-accordion>
+          <br>
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Phone number : {{user.phoneNumber}}
+                </mat-panel-title>
+                <mat-panel-description>
+                  Click here to edit
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+
+              <form [formGroup]="phoneChangeForm">
+                <label>Enter your phone number : </label>
+
+                <mat-form-field>
+                  <input matInput type="number" placeholder="phone number" formControlName="phoneNumber">
+                  <mat-error *ngIf="phoneChangeForm.get('phoneNumber').hasError('required')">
+                    <span>Phone number is required</span>
+                  </mat-error>
+                  <mat-error *ngIf="phoneChangeForm.get('phoneNumber').hasError('pattern')">
+                    <span>Please enter valid phone number (Eg.8789564123)</span>
+                  </mat-error>
+                </mat-form-field>
+                <button mat-raised-button color="primary" [disabled]="!this.phoneChangeForm.valid" (click)="updatePhone()">Save
+                </button>
+              </form>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </mat-tab>
+        <mat-tab label="Login & account">
+          <div class="center-form">
+            <form [formGroup]="passwordChangeForm">
+
+              <div class='row'>
+                <label class="col-sm-6">Enter Old password : </label>
+                <div class="col-sm-4">
+                 <mat-form-field>
+                   <input matInput [type]="hide ? 'password' : 'text'" placeholder ="old Password" formControlName="oldPassword"required>
+                   <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class='row'>
+                  <label class="col-sm-6">Enter New password : </label>
+                  <div class="col-sm-4">
+                   <mat-form-field>
+                    
+                    <input matInput [type]="newpasswordHide ? 'password' : 'text'"placeholder ="New Password" formControlName="newPassword"required>
+                    <mat-icon matSuffix (click)="newpasswordHide = !newpasswordHide">{{newpasswordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </mat-form-field>
+                  </div>
+                </div>
+
+                <div class='row'>
+                    <label class="col-sm-6">Enter Confirm password : </label>
+                    <div class="col-sm-4">
+                     <mat-form-field>
+                       <input matInput type="password" placeholder ="Confirm Password" formControlName="confirmPassword" required>
+                       <mat-error *ngIf="passwordChangeForm.get('confirmPassword').hasError('mustMatch')">Password Mismatch</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <br>
+                  <mat-error>{{errorMessage}}</mat-error>
+                  <button mat-raised-button color="primary" [disabled]="!this.passwordChangeForm.valid" (click)="updatePassword()">Save
+                    </button>
+            </form>
+          </div>
+
+        </mat-tab>
+        <mat-tab label="Address">Address</mat-tab>
+      </mat-tab-group>
+
+    </mat-card-content>
+  </mat-card>
+</div>

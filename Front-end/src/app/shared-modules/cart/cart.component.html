@@ -1,0 +1,54 @@
+<h4>
+  Your cart details
+</h4>
+<div *ngIf="quantityError" class="error">{{quantityError}}</div>
+<div class="main-container">
+  <div class="cart-container">
+
+    <div>
+
+      <div class="row list" *ngFor="let product of cartProducts">
+        <div class="col-sm-4">
+          <img src={{product.productImage}}>
+        </div>
+        <div class="col-sm-4">
+          <h6> <b>{{product.productName}}</b></h6><br>
+          <p> Price :<span id="price"><i class="fa fa-rupee"></i> {{product.productOfferedPrice}} </span> &nbsp;Offer :
+            {{product.productOffer}} %</p>
+          <p> </p>
+          <p> M.R.P : <span id="line"><i class="fa fa-rupee"></i>{{product.productPrice}}</span> </p>
+        </div>
+        <div class="col-sm-4">
+          <div>Quantity  : {{product.quantity}}</div>
+         
+          <mat-form-field> Select Quantity :
+            <mat-select (selectionChange)="setMaxQuantity($event,product)">
+              <mat-option>Select</mat-option>
+              <mat-option [value]="quantity" *ngFor="let quantity of chooseQuantity">{{quantity}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+  <div class="price-container">
+    <mat-card>
+      <mat-card-header><b>Price Details</b></mat-card-header><br>
+      <br>
+      <mat-card-content>
+        <div>
+          <div class="col-sm-8">
+            <p class="total">Total Items : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{totalItems}}</p>
+          </div>
+          <div class="col-sm-8">
+            <p class="total">Total Price : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-rupee"></i>{{totalPrice}}</p>
+          </div>
+          
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

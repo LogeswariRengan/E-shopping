@@ -1,0 +1,193 @@
+<br>
+<h3>{{showProduct.productName}}</h3>
+<div class="main-container">
+
+  <div class="left">
+
+    <div class="small-image-container" *ngIf="showProduct">
+
+
+
+      <div class="small-image" *ngIf="showProduct.frontView">
+
+        <img src={{showProduct.frontView}} (mouseover)="imageView()">
+
+      </div>
+
+      <div class="small-image" *ngIf="showProduct.leftView">
+
+        <img src={{showProduct.leftView}} (mouseover)="imageView()">
+
+      </div>
+
+      <div class="small-image" *ngIf="showProduct.topView">
+
+        <img src={{showProduct.topView}} (mouseover)="imageView()">
+
+      </div>
+
+      <div class="small-image" *ngIf="showProduct.rightView">
+
+        <img src={{showProduct.rightView}} (mouseover)="imageView()">
+
+      </div>
+      <div class="small-image" *ngIf="showProduct.bottomView">
+
+        <img src={{showProduct.bottomView}} (mouseover)="imageView()">
+
+      </div>
+
+      <div class="small-image" *ngIf="showProduct.backView">
+
+        <img src={{showProduct.backView}} (mouserover)="imageView()">
+
+      </div>
+    </div>
+
+
+
+
+    <div class="image-box">
+      <!-- <img [src]=imageSrc> -->
+
+      <app-zoom-image imgPath={{imageSrc}}></app-zoom-image>
+      <br>
+
+
+    </div><br><br><br>
+
+    <button mat-button id="button1" (click)="addToCart()"><i class="fa fa-cart-plus" aria-hidden="true"></i>Add to
+      cart</button>&nbsp;
+    <button mat-button id="button2" (click)="gotoUrl()"> <i class="fa fa-shopping-bag" aria-hidden="true"></i>Buy now</button><br>
+
+
+  </div>
+
+
+  <div class="right prod-desc">
+    <h5><b>{{showProduct.productName}}</b></h5><br>
+
+    <p style="color:red"> Ratings :&nbsp; {{showProduct.productRating}}/5<br></p>
+
+    <div class="row">
+      <div class="col m4">
+        <mat-card>
+          <mat-card-title>
+            Price details
+          </mat-card-title>
+          <mat-card-content>
+
+            <div class="row">
+              Price : &nbsp; <p id="price"> <i class="fa fa-rupee"></i>{{showProduct.productOfferedPrice}}</p><br>
+            </div>
+            <div class="row">
+              M.R.P : &nbsp; <p id="price-line"><i class="fa fa-rupee"></i>{{showProduct.productPrice}}</p><br>
+            </div>
+            <div class="row">
+              Offer: &nbsp; {{showProduct.productOffer}}%<br>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <div class="col m4">
+        <mat-card>
+          <mat-card-title>
+            Product details
+          </mat-card-title>
+          <mat-card-content>
+
+            <div class="row">
+              Color : &nbsp; {{showProduct.productColor}}<br>
+            </div>
+            <div class="row">
+              Description : &nbsp;{{showProduct.productDesc}}<br>
+            </div>
+            <div class="row">
+              Product Seller : &nbsp;{{showProduct.productSeller}}<br>
+            </div>
+
+
+          </mat-card-content>
+        </mat-card>
+      </div><br>
+
+
+    </div><br>
+
+    <div>
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <b> Specifications </b>
+            </mat-panel-title>
+            <mat-panel-description>
+              Click here to view specification
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+
+          <table id="table">
+            <tr>
+              <td>PRODUCT TYPE</td>
+              <td>{{showProduct.productType}}</td>
+            </tr>
+            <tr>
+              <td>IDEAL FOR</td>
+              <td>{{showProduct.productIdealFor}}</td>
+            </tr>
+            <tr>
+              <td>PRODUCT COLOR</td>
+              <td>{{showProduct.productColor}}</td>
+            </tr>
+            <tr>
+            <tr *ngIf="showProduct.watchBrand">
+              <td>WATCH BRAND</td>
+              <td>{{showProduct.watchBrand}}</td>
+            </tr>
+
+            <tr *ngIf="showProduct.watchMaterial">
+              <td>WATCH MATERIAL</td>
+              <td>{{showProduct.watchMaterial}}</td>
+            </tr>
+            <tr *ngIf="showProduct.watchType">
+              <td>WATCH TYPE</td>
+              <td>{{showProduct.watchType}}</td>
+            </tr>
+            <tr *ngIf="showProduct.watchFeature">
+              <td>WATCH FEATURES</td>
+              <td>{{showProduct.watchFeature}}</td>
+            </tr>
+
+
+            <tr *ngIf="showProduct.bagBrand">
+              <td>BAG BRAND</td>
+              <td>{{showProduct.bagBrand}}</td>
+            </tr>
+
+            <tr *ngIf="showProduct.bagMaterial">
+              <td>BAG MATERIAL</td>
+              <td>{{showProduct.bagMaterial}}</td>
+            </tr>
+            <tr *ngIf="showProduct.bagTheme">
+              <td>BAG THEME</td>
+              <td>{{showProduct.bagTheme}}</td>
+            </tr>
+            <tr *ngIf="showProduct.bagCapacity">
+              <td>BAG CAPACITY</td>
+              <td>{{showProduct.bagCapacity}} ltrs</td>
+            </tr>
+
+          </table>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+
+
+
+
+
+  </div>
+</div>
